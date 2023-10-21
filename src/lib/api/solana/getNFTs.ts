@@ -41,7 +41,6 @@ const nfts = await Promise.all(
 		} catch (error) {}
 	})
 ).then((nfts) => nfts.filter((nft) => nft));
-
 return nfts;
 };
 
