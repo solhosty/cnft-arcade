@@ -4,10 +4,7 @@ const getPrice = async () => {
 	);
 	const data = await response.json();
 	const price = data.data.value;
-	console.log(price);
 	return price.toFixed(2);
 };
-
-// Call the getPrice function every 20 seconds
 
 export { getPrice };

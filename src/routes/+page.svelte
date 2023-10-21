@@ -1,47 +1,20 @@
 <script>
+	import { walletStore as walletStore$ } from '@svelte-on-solana/wallet-adapter-core';
+	import Choice from "../components/Choice.svelte";
+	import Wallet from "../components/solana/Wallet.svelte";
+
 </script>
 
-<div class="header-text">
-	<h1 class="mt-6">
-		<img
-			src="https://raw.githubusercontent.com/birdeye-so/birdeye-ads/main/network/solana.png"
-			alt=""
-		/> olana Portfolio
-	</h1>
-</div>
-<h4>created by hosty</h4>
-
-<style>
-	h1 {
-		font-family: 'Bruno Ace', cursive;
-		font-size: 2rem;
-		display: flex;
-		flex-direction: row;
-		max-width: 400px;
-	}
-	img {
-		height: 100%;
-		max-width: 50px;
-	}
-	.header-text {
-		display: flex;
-		flex-direction: row;
-		max-width: 100%;
-		width: 500px;
-		margin: auto;
-	}
-	@media (max-width: 700px) {
-		.header-text {
-			width: 360px;
-		}
-		img {
-			width: 30px;
-			height: 25px;
-			margin-top: 2%;
-		}
-		h1 {
-			max-width: 300px;
-			font-size: 1.5rem;
-		}
-	}
-</style>
+	<div class="w-full">
+		<img src="/minion.png" class="w-48 pt-10 m-auto" alt=""/>
+		{#if !$walletStore$?.connected}
+		<div>
+			<h1 class="text-center text-white my-4"> Connect wallet to start playing. </h1>
+			<Wallet/>
+		</div>
+		{:else if $walletStore$?.connected}
+			<div class="mins w-full h-full mt-0 pt-0">
+			<Choice/>
+			</div>
+		{/if}
+     </div>

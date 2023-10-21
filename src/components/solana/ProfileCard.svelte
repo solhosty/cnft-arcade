@@ -3,12 +3,10 @@
 	import { createQuery } from '@tanstack/svelte-query';
 	import { getNFTs } from '$lib/api/solana/getNFTs.ts';
 	import { fly } from 'svelte/transition';
-	import { userPublicKey } from '../../lib/stores.ts';
 	import '../../app.css';
 	import { lazyLoad } from './lazyLoad.ts';
 	import { fade } from 'svelte/transition';
 
-	const isHidden = true;
 	const nftsQuery = createQuery({
 		queryKey: ['nfts'],
 		queryFn: getNFTs
@@ -16,40 +14,31 @@
 </script>
 
 {#if $nftsQuery.isLoading}
-	<h2>Loading NFTs...</h2>
+<span class="loading loading-dots loading-lg m-auto flex justify-center pt-20 mt-20"></span>
 {:else if $nftsQuery.isError}
-	<h2>Error fetching NFTs, please refresh and make sure a wallet is connected that has Minions.</h2>
+	<h2 class="loading loading-dots loading-lg m-auto flex justify-center pt-20 mt-20 text-white">Error fetching NFTs, please refresh and make sure a wallet is connected that has Minions.</h2>
 {:else}
-	{#each $nftsQuery.data as nft}
-		<div transition:fly class="nft flex flex-col justify-center items-center bg-white p-2 mt-3">
-			<img
-				use:lazyLoad
-				transition:fade
-				class="min-img w-full h-auto object-cover"
-				data-src={nft.metadata.image}
-				alt={nft.metadata.name}
-			/>
+	<div class="nft-container flex flex-wrap justify-center pt-10">
+		{#each $nftsQuery.data as nft}
+			<div transition:fly class="nft w-3/5 md:w-40 flex flex-col justify-center items-center bg-black p-2 mt-3 mx-1">
+				<img
+					use:lazyLoad
+					transition:fade
+					class="min-img w-full object-cover"
+					data-src={nft.metadata.image}
+					alt={nft.metadata.name}
+				/>
 
-			<div class="nft-info">
-				<h4 class="min-name mt-2 text-base font-medium text-center text-black">
-					{nft.metadata.name}
-				</h4>
+				<div class="nft-info text-white">
+					<h2 class="min-name mt-2 text-base text-center text-white opacity-100 font-bold">
+						{nft.metadata.name}
+					</h2>
+				</div>
 			</div>
-		{#if !isHidden}
-			<div class="button-row">
-				<a href="https://magiceden.io/item-details/{nft.nft.mintAddress}" target="_blank">
-					<button class="market-btn me">
-						<img src="https://www.solanaterminal.com/media/magic-eden.png" alt="" />
-					</button>
-				</a>
-				<a href="https://exchange.art/single/{nft.nft.mintAddress}" target="_blank">
-					<button class="market-btn ea"> <img src="/ea.svg" alt="" /> </button>
-				</a>
-			</div>
-		{/if}
-		</div>
-	{/each}
+		{/each}
+	</div>
 {/if}
+
 
 <style>
 	.min-img {
@@ -57,29 +46,9 @@
 		transition: opacity 1s;
 	}
 
-	.button-row {
-		display: flex;
-		flex-direction: row;
-		width: 100%;
-		justify-content: space-between;
-	}
-	.me {
-		width: 35px;
-		padding: 5px;
-	}
-	.market-btn {
-		background-color: rgba(0, 0, 0, 0.4);
-		display: flex;
-		flex-direction: row;
-		border-radius: 10px;
-	}
-	.ea {
-		width: 120px;
-		padding: 5px;
-	}
+
 	.min-name {
 		text-decoration: none;
-		color: rgb(87, 77, 77);
 		text-shadow: 0.2px black;
 	}
 
