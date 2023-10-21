@@ -46,7 +46,7 @@
 </script>
 
 <div class="flex justify-center my-4 mx-2 mb-2">
-	<div class="card w-72 lg:w-60 md:w-52 bg-base-100 shadow-sm image-full border-2 border-transparent shadow-white hover:border-white hover:border-2">
+	<div class="card nft w-72 lg:w-60 md:w-52 bg-base-100 shadow-sm image-full border-2 border-transparent shadow-white hover:border-white hover:border-2">
 		<figure class="w-full box-border"><img class="w-full opacity-60 object-cover box-border" src={game.image} alt={game.name} /></figure>
 		<div class="card-body flex flex-col h-full">
 			<h2 class="card-title text-white text-base mb-4">{game.name}</h2>
@@ -57,8 +57,8 @@
 				{#if loading}
 				<span class="loading loading-infinity loading-lg m-auto mt-2"></span>
 				{:else if loaded}
-				<a href="/play">
-					<button class="btn bg-gradient-to-r from-green-700 to-green-800 w-full text-white my-2">Play</button>
+				<a href="/play w-full">
+				<button class="btn bg-gradient-to-r from-green-700 to-green-800 w-full text-white my-2">Play</button>
 				</a>
 				{:else if game.name === "TBD"}
 				<button disabled class="btn bg-gradient-to-r hover:from-red-900 hover:to-red-900 from-red-600 to-red-800 w-full text-white my-2" on:click={mintGame}>Mint</button>
@@ -72,3 +72,12 @@
 </div>
 
 
+<style>
+	.nft {
+		box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
+		transition: transform 0.2s ease-in-out;
+	}
+	.nft:hover {
+		transform: translateY(-2px);
+	}
+</style>
