@@ -19,10 +19,10 @@
 {:else if $nftsQuery.isError}
 	<h2 class="loading loading-dots loading-lg m-auto flex justify-center pt-20 mt-20 text-white">Error fetching NFTs, please refresh and make sure a wallet is connected that has Minions.</h2>
 {:else}
-<div class="nft-container flex flex-wrap justify-center pb-10 w-3/5 mx-auto pt-10 min-h-screen bg-black">
+<div class="nft-container flex flex-wrap justify-center pb-10 w-4/5 md:w-3/5 lg:w-3/5 mx-auto pt-10 bg-black">
     {#each $nftsQuery.data as nft}
-        <div transition:fly class="border-2 border-opacity-25 border-white hover:border-opacity-100 nft w-1/4 md:w-1/3 lg:w-1/4 flex flex-col justify-center items-center bg-black p-2 mt-3 mx-1">
-				<img
+        <div transition:fly class="border-2 border-opacity-25 border-white hover:border-opacity-100 nft w-full sm:w-1/2 md:w-1/3 lg:w-1/3 flex flex-col justify-center items-center bg-black p-2 mt-3 mx-0.5">
+		<img
 					use:lazyLoad
 					transition:fade
 					class="min-img w-full object-cover"

@@ -57,7 +57,7 @@
 				{#if loading}
 				<span class="loading loading-infinity loading-lg m-auto mt-2"></span>
 				{:else if loaded}
-				<a href="/play w-full">
+				<a href="/play" class="w-full">
 				<button class="btn bg-gradient-to-r from-green-700 to-green-800 w-full text-white my-2">Play</button>
 				</a>
 				{:else if game.name === "TBD"}
