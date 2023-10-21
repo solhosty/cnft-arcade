@@ -7,7 +7,7 @@
 
 <div class="p-0 m-0 bg-black pt-10">
     <h1 class="text-4xl flex justify-center text-center text-white font-bold"> Available Games</h1>
-    <div class="flex flex-wrap justify-center w-3/5 m-auto p-4">
+    <div class="flex flex-wrap justify-center w-4/5 md:w-4/5 m-auto p-4">
         {#each games as game}
             <Game game={game} owner={$userPublicKey.toString()}  />
         {/each}

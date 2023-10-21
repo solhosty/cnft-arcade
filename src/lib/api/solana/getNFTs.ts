@@ -15,9 +15,10 @@ const getNFTs = async () => {
 		body: JSON.stringify({
 			jsonrpc: '2.0',
 			id: '1',
-			method: 'getAssetsByOwner',
+			method: 'searchAssets',
 			params: {
 				"ownerAddress": `${publicKey}`,
+				"grouping": ["collection", "54Gu7ZG8p8cm4WcXPDURAnaNMfD4gMFtvxwHuYD5HanG"],
 				"page": 1,
 				"limit": 1000
 			},

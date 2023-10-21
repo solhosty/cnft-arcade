@@ -2,6 +2,8 @@
     import { onMount } from "svelte";
 	import type { LayoutData } from "./$types";
 	import { getAsset } from "$lib/api/solana/getAsset";
+	import { walletStore } from "@svelte-on-solana/wallet-adapter-core";
+	import { goto } from "$app/navigation";
     export let data: LayoutData;
     let nft;
     let iframeUrl = "";
@@ -11,6 +13,9 @@
         nft = await getAsset(data.props.id);
         iframeUrl = nft.content.files[1].uri;
     });
+    $: if(!$walletStore.connected) {
+        goto("/")
+    }
 </script>
 
 {#if iframeUrl}
