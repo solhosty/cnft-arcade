@@ -4,6 +4,7 @@
 	import Wallet from "../components/solana/Wallet.svelte";
 
 </script>
+<svelte:head> <title>cNFT Arcade</title> </svelte:head>
 
 	<div class="w-full">
 		<img src="/minion.png" class="w-48 pt-10 m-auto" alt=""/>

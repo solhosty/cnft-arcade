@@ -11,7 +11,6 @@
 		PhantomWalletAdapter,
 		SolflareWalletAdapter,
 		LedgerWalletAdapter,
-		UnsafeBurnerWalletAdapter,
 
 	} from '@solana/wallet-adapter-wallets';
 	import '../../app.css';
@@ -20,21 +19,18 @@
 
 
 	const userWallet = get(userPublicKey);
-	let wallets: (PhantomWalletAdapter | SolflareWalletAdapter | LedgerWalletAdapter | UnsafeBurnerWalletAdapter)[];
+	let wallets: (PhantomWalletAdapter | SolflareWalletAdapter | LedgerWalletAdapter)[];
 	const localStorageKey = 'solWalletAdapter';
 	onMount(async () => {
 		wallets = [
 			new PhantomWalletAdapter(),
 			new SolflareWalletAdapter(),
-			new UnsafeBurnerWalletAdapter()
 		];
 	});
 	$: {
 		if ($walletStore$?.connected) {
-			console.log('Wallet Connected.');
 			userPublicKey.set($walletStore$.publicKey);
 		} else {
-			console.log('Wallet Not Connected.');
 			userPublicKey.set('');
 		}
 	}

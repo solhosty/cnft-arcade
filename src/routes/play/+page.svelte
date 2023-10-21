@@ -6,6 +6,8 @@
 	export let data: LayoutData;
 
 </script>
+<svelte:head> <title> Play Games</title> </svelte:head>
+
 <div class="main h-screen">
     <div class="header-text flex flex-row justify-center pt-10">
         <img src="./play.svg" alt="" class="h-12 w-12 mx-2"/> 
