@@ -6,7 +6,7 @@
 </script>
 <svelte:head> <title>cNFT Arcade</title> </svelte:head>
 
-	<div class="w-full h-full bg-black">
+	<div class="w-full h-full bg-black overflow-hidden">
 		<img src="/minion.png" class="w-48 pt-10 m-auto" alt=""/>
 		{#if !$walletStore$?.connected}
 		<div>
