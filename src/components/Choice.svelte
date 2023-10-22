@@ -1,4 +1,4 @@
-<div class="mins w-full h-full mb-0 pt-0 mt-10">
+<div class="mins w-full h-full mb-0 pt-0 mt-10 mb-10">
     <div class="nfts flex flex-col p-2 md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4 mb-4 overflow-scroll m-auto">
         <div class="card w-full md:w-96 bg-black shadow-xl border-2 border-white border-opacity-30 hover:border-opacity-100">
             <div class="card-body">
