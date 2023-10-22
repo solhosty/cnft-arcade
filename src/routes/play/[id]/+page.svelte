@@ -2,8 +2,6 @@
     import { onMount } from "svelte";
 	import type { LayoutData } from "./$types";
 	import { getAsset } from "$lib/api/solana/getAsset";
-	import { walletStore } from "@svelte-on-solana/wallet-adapter-core";
-	import { goto } from "$app/navigation";
     export let data: LayoutData;
     let nft;
     let iframeUrl = "";
@@ -36,7 +34,7 @@
         frameborder="0" 
         title="Game"
         width="400"
-        height="620"
+        height="450"
         allowfullscreen
     ></iframe>
         {/if}

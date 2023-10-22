@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Game } from '$lib/types/games';
-
+	
 	export let game: Game;
 	export let owner: string;
 	let loading = false;

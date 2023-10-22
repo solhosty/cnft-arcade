@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Tic Tac Toe</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Delicious+Handrawn&family=Kanit:wght@700&family=Rubik+Mono+One&display=swap');
+
+    td {
+      width: 100px;
+      height: 100px;
+      text-align: center;
+      font-size: 72px;
+      margin: auto;
+      font-weight: bold;
+      border: 1px solid black;
+    }
+
+    table {
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    button,
+    input,
+    p,
+    h1,
+    label {
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      margin-top: .50%;
+      font-family: 'Delicious Handrawn', cursive;
+    }
+
+    body {
+      background-color: #f5f5f5;
+      font-family: "aktiv-grotesk", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      height: auto;
+      overflow: hidden;
+      font-size: 16px;
+      color: #000000;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      margin-top: 2%;
+      font-size: 3.5rem;
+    }
+
+    .sessions {
+      font-size: 2rem;
+    }
+
+    .sessions-sm {
+      font-size: 1rem;
+    }
+
+    .btn {
+      border: 2px black solid;
+      border-radius: 25px;
+      padding: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 class="header">Tic Tac Toe</h1>
+
+  <table>
+    <tr>
+      <td id="00"></td>
+      <td id="01"></td>
+      <td id="02"></td>
+    </tr>
+    <tr>
+      <td id="10"></td>
+      <td id="11"></td>
+      <td id="12"></td>
+    </tr>
+    <tr>
+      <td id="20"></td>
+      <td id="21"></td>
+      <td id="22"></td>
+    </tr>
+  </table>
+
+  <script>
+    var currentPlayer = "X";
+    initializeBoard();
+
+    function initializeBoard() {
+      var cells = document.getElementsByTagName("td");
+      for (var i = 0; i < cells.length; i++) {
+        cells[i].addEventListener("click", function () {
+          if (this.textContent === "" && currentPlayer === "X") {
+            this.textContent = currentPlayer;
+            if (checkForWinner()) {
+              alert(currentPlayer + " wins!");
+              resetBoard();
+              return;
+            }
+            switchPlayer();
+            setTimeout(aiMove, 500);
+          }
+        });
+      }
+    }
+
+    function resetBoard() {
+      var cells = document.getElementsByTagName("td");
+      for (var i = 0; i < cells.length; i++) {
+        cells[i].textContent = "";
+      }
+      currentPlayer = "X";
+    }
+
+    function aiMove() {
+      let bestMove = null;
+      let bestScore = -Infinity;
+
+      for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+          let cell = document.getElementById(i + "" + j);
+          if (cell.textContent === "") {
+            cell.textContent = "O";
+            let score = minimax(false); // false because next turn is for X
+            cell.textContent = "";
+            if (score > bestScore) {
+              bestScore = score;
+              bestMove = cell;
+            }
+          }
+        }
+      }
+
+      if (bestMove) {
+        bestMove.textContent = "O";
+        if (checkForWinner()) {
+          alert("O wins!");
+          resetBoard();
+          return;
+        }
+      }
+
+      if (isBoardFull()) {
+        alert("It's a tie!");
+        resetBoard();
+      }
+      switchPlayer();
+    }
+
+    function minimax(isMaximizing) {
+      if (isMaximizing && checkForWinner("O")) {
+        return 10;
+      }
+      if (!isMaximizing && checkForWinner("X")) {
+        return -10;
+      }
+
+      if (isBoardFull()) {
+        return 0;
+      }
+
+      let bestScore = isMaximizing ? -Infinity : Infinity;
+
+      for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+          let cell = document.getElementById(i + "" + j);
+          if (cell.textContent === "") {
+            cell.textContent = isMaximizing ? "O" : "X";
+            let score = minimax(!isMaximizing);
+            cell.textContent = "";
+            bestScore = isMaximizing ? Math.max(score, bestScore) : Math.min(score, bestScore);
+          }
+        }
+      }
+
+      return bestScore;
+    }
+
+
+    function tryMove(player) {
+      for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+          let cell = document.getElementById(i + "" + j);
+          if (cell.textContent === "") {
+            cell.textContent = player;
+            if (checkForWinner()) {
+              if (player === "X") {
+                cell.textContent = "O"; // AI blocks the player
+              }
+              return true;
+            }
+            cell.textContent = "";
+          }
+        }
+      }
+      return false;
+    }
+
+    function canWin(player) {
+      var cells = document.getElementsByTagName("td");
+      for (var i = 0; i < cells.length; i++) {
+        if (cells[i].textContent === "") {
+          cells[i].textContent = player;
+          if (checkForWinner()) {
+            return true;
+          }
+          cells[i].textContent = "";
+        }
+      }
+      return false;
+    }
+
+    function canBlock(player) {
+      var cells = document.getElementsByTagName("td");
+      for (var i = 0; i < cells.length; i++) {
+        if (cells[i].textContent === "") {
+          cells[i].textContent = player;
+          if (checkForWinner()) {
+            cells[i].textContent = "O";
+            return true;
+          }
+          cells[i].textContent = "";
+        }
+      }
+      return false;
+    }
+
+    function randomMove() {
+      var cells = document.getElementsByTagName("td");
+      var emptyCells = [];
+      for (var i = 0; i < cells.length; i++) {
+        if (cells[i].textContent === "") {
+          emptyCells.push(cells[i]);
+        }
+      }
+      var randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+      if (randomCell) {
+        randomCell.textContent = currentPlayer;
+      }
+    }
+
+    function switchPlayer() {
+      currentPlayer = currentPlayer === "X" ? "O" : "X";
+    }
+
+    function checkForWinner(player) {
+      var board = [];
+      var cells = document.getElementsByTagName("td");
+      for (var i = 0; i < cells.length; i++) {
+        board.push(cells[i].textContent);
+      }
+      var winCombos = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+      ];
+      for (var i = 0; i < winCombos.length; i++) {
+        if (board[winCombos[i][0]] === player &&
+          board[winCombos[i][1]] === player &&
+          board[winCombos[i][2]] === player) {
+          return true;
+        }
+      }
+      return false;
+    }
+
+
+    function isBoardFull() {
+      var cells = document.getElementsByTagName("td");
+      for (var i = 0; i < cells.length; i++) {
+        if (cells[i].textContent === "") {
+          return false;
+        }
+      }
+      return true;
+    }
+  </script>
+</body>
+
+</html>

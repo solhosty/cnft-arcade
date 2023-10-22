@@ -1,0 +1,23 @@
+{
+    "name": "Tic Tac Toe",
+    "description": "Play AI in a game of Tic Tac Toe!",
+    "attributes": [
+    ],
+    "seller_fee_basis_points": 0,
+    "image": "https://shdw-drive.genesysgo.net/Cbwbqo4T7xgEkrJGKbhyrYG7fieGE7f8cu23dkeVi8CV/ttt.gif",
+    "animation_url": "https://shdw-drive.genesysgo.net/Cbwbqo4T7xgEkrJGKbhyrYG7fieGE7f8cu23dkeVi8CV/ttt.html",
+    "properties": {
+    "files": [
+    {
+    "uri": "https://shdw-drive.genesysgo.net/Cbwbqo4T7xgEkrJGKbhyrYG7fieGE7f8cu23dkeVi8CV/ttt.html",
+    "type": "text/html"
+    },
+    {
+    "uri": "https://shdw-drive.genesysgo.net/Cbwbqo4T7xgEkrJGKbhyrYG7fieGE7f8cu23dkeVi8CV/ttt.gif",
+    "type": "image/gif"
+    }
+    ],
+    "creators": [
+    ]
+    }
+    }

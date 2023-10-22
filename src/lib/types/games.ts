@@ -34,12 +34,20 @@ export const games: Game[] = [
         image: "https://arweave.net/vAUz-fMsam114urGTfXqigcLv-w_w1bM0L7qx6lr9JA?ext=gif"
     },
     {
-        name: "TBD",
+        name: "Snake",
         symbol: "MA",
-        uri: "https://arweave.net/4Y8b3nIcBMaqevhOycCm-EQ5FNwLZ2YKQ6iK_3H57YM",
+        uri: "https://shdw-drive.genesysgo.net/Cbwbqo4T7xgEkrJGKbhyrYG7fieGE7f8cu23dkeVi8CV/snake.json",
         description: "This game is yet to be announced or released.",
         collection: "54Gu7ZG8p8cm4WcXPDURAnaNMfD4gMFtvxwHuYD5HanG",
-        image: "/default.jpeg"
+        image: "https://shdw-drive.genesysgo.net/Cbwbqo4T7xgEkrJGKbhyrYG7fieGE7f8cu23dkeVi8CV/snake.gif"
+    },
+    {
+        name: "Tic Tac Toe",
+        symbol: "MA",
+        uri: "https://shdw-drive.genesysgo.net/Cbwbqo4T7xgEkrJGKbhyrYG7fieGE7f8cu23dkeVi8CV/ttt.json",
+        description: "Play AI in a game of Tic Tac Toe.",
+        collection: "54Gu7ZG8p8cm4WcXPDURAnaNMfD4gMFtvxwHuYD5HanG",
+        image: "https://shdw-drive.genesysgo.net/Cbwbqo4T7xgEkrJGKbhyrYG7fieGE7f8cu23dkeVi8CV/ttt.gif"
     },
     {
         name: "TBD",
@@ -47,15 +55,7 @@ export const games: Game[] = [
         uri: "https://arweave.net/4Y8b3nIcBMaqevhOycCm-EQ5FNwLZ2YKQ6iK_3H57YM",
         description: "This game is yet to be announced or released.",
         collection: "54Gu7ZG8p8cm4WcXPDURAnaNMfD4gMFtvxwHuYD5HanG",
-        image: "/default.jpeg"
-    },
-    {
-        name: "TBD",
-        symbol: "MA",
-        uri: "https://arweave.net/4Y8b3nIcBMaqevhOycCm-EQ5FNwLZ2YKQ6iK_3H57YM",
-        description: "This game is yet to be announced or released.",
-        collection: "54Gu7ZG8p8cm4WcXPDURAnaNMfD4gMFtvxwHuYD5HanG",
-        image: "/default.jpeg"
+        image: "Default"
     },
    
     
