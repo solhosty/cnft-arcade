@@ -21,13 +21,27 @@
 {#if iframeUrl}
 <h1 class="text-white text-center text-2xl pt-4 md:pt-20 lg:pt-10"> {nft.content.metadata.name}</h1>
     <div class="flex justify-center my-2 h-screen bg-black">
+        {#if nft.content.metadata.name === "Whack A Minion"}
         <iframe 
-            class="w-11/12 md:w-2/3 lg:w-1/2 xl:w-3/6 h-full rounded-xl" 
-            src={iframeUrl} 
+            class="rounded-xl" 
+            src={"https://games.hostynft.repl.co/wam/test/"} 
             frameborder="0" 
             title="Game"
+            width="400"
+            height="620"
             allowfullscreen
         ></iframe>
+        {:else}
+        <iframe 
+        class="rounded-xl" 
+        src={iframeUrl} 
+        frameborder="0" 
+        title="Game"
+        width="400"
+        height="620"
+        allowfullscreen
+    ></iframe>
+        {/if}
     </div>
 {:else}
     <h2 class="mt-16 text-center">Loading game...</h2>
