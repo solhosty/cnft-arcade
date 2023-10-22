@@ -13,9 +13,7 @@
         nft = await getAsset(data.props.id);
         iframeUrl = nft.content.files[1].uri;
     });
-    $: if(!$walletStore.connected) {
-        goto("/")
-    }
+
 </script>
 
 {#if iframeUrl}
