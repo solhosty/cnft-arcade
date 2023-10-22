@@ -16,3 +16,31 @@ body, html {
     margin: 0;
     padding: 0;
 }
+
+/* This targets the entire scrollbar */
+::-webkit-scrollbar {
+    width: 4px; /* Very thin vertical scrollbars */
+    height: 4px; /* Very thin horizontal scrollbars */
+}
+
+/* This targets the thumb (the part you drag) */
+::-webkit-scrollbar-thumb {
+    background: rgba(128, 128, 128, 0.3); /* Semi-transparent gray */
+    border-radius: 2px; /* Slightly rounded corners */
+}
+
+/* This targets the track (the background) */
+::-webkit-scrollbar-track {
+    background: transparent; /* Fully transparent track */
+}
+
+/* This targets the thumb when it's hovered */
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(80, 80, 80, 0.5); /* Slightly darker gray when hovered */
+}
+
+/* Styling scrollbars for Firefox */
+body {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(128, 128, 128, 0.3) transparent; /* thumb and track color */
+}
