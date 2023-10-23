@@ -2,10 +2,8 @@
 	// @ts-nocheck
 	import { createQuery } from '@tanstack/svelte-query';
 	import { getNFTs } from '$lib/api/solana/getNFTs.ts';
-	import { fly } from 'svelte/transition';
 	import '../../app.css';
-	import { lazyLoad } from './lazyLoad.ts';
-	import { fade } from 'svelte/transition';
+
 
 	const nftsQuery = createQuery({
 		queryKey: ['nfts'],
@@ -19,57 +17,24 @@
 	{:else if $nftsQuery.isError}
 		<h2 class="loading loading-dots loading-lg m-auto flex justify-center pt-20 mt-20 ">Error fetching NFTs, please refresh and make sure a wallet is connected that has Minions.</h2>
 	{:else}
-	<div class="nft-container my-6 flex flex-wrap justify-center pb-10 w-4/5 md:w-3/5 lg:w-3/5 mx-auto ">
+	<div class="justify-center my-6 mb-2 grid grid-cols-1 lg:grid-cols-3 w-9/12 lg:w-7/12 md:w-7/12 m-auto gap-2 ">
 		{#each $nftsQuery.data as nft}
-			<div transition:fly class="border-2 border-opacity-25 border-white hover:border-opacity-100 nft w-full sm:w-1/2 md:w-1/3 lg:w-1/3 flex flex-col justify-center items-center  p-2 mt-3 mx-0.5">
-				<a href={`/play/${nft.nft.id}`} class="w-full h-full">
-					<img
-							use:lazyLoad
-							transition:fade
-							class="min-img w-full object-cover"
-							data-src={nft.metadata.image}
-							alt={nft.metadata.name}
-						/>
-	
-						<div class="nft-info ">
-							<h2 class="min-name mt-2 text-xl text-center  opacity-100 font-bold">
-								{nft.metadata.name}
-							</h2>
-						</div>
-				</a>
+		<div class="card border-2 border-white rounded-xl my-2 border-opacity-25 hover:border-opacity-100 w-full md:w-52 lg:w-64 bg-base-100 image-full overflow-hidden">
+			<figure class="box-border"><img class="w-full opacity-60 object-cover box-border" src={nft.metadata.image} alt={nft.nft.content.metadata.name} /></figure>
+			<div class="card-body flex flex-col h-full">
+				<h2 class="card-title text-white text-base mb-4">{nft.metadata.name}</h2>
+				<div class="flex-grow overflow-y-auto max-h-24 w-48 overflow-x-hidden mb-4"> <!-- Added max-h-40 -->
+					<p class="text-white">{nft.metadata.description}</p>
+				</div>
+				<div class="card-actions w-full">
+					<a href='/play/{nft.nft.id}' class="w-full">
+						<button class="btn w-full border-2 border-opacity-25 hover:border-opacity-100 rounded-lg"> Play </button>
+					</a>
+		       </div>
 			</div>
+		</div>
 		{/each}
 	</div>
 	{/if}
 	</body>
 	
-	<style>
-		.min-img {
-			opacity: 1;
-			transition: opacity 1s;
-		}
-	
-		.min-name {
-			text-decoration: none;
-			text-shadow: 0.2px black;
-		}
-	
-		.nft {
-			border-radius: 10px;
-			display: flex;
-			flex-direction: column; /* ensure that content flows vertically */
-			box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
-			transition: transform 0.2s ease-in-out;
-			/* height: 300px;  You can uncomment this if you want a fixed height for the cards */
-		}
-		.nft:hover {
-			transform: translateY(-2px);
-		}
-	
-		.nft img {
-			border-radius: 10px;
-			height: auto; /* adjust this to ensure image doesn't stretch or compress */
-			max-height: 70%; /* this will ensure the image doesn't take more than 70% of the card's height */
-			width: 100%;
-		}
-	</style>
