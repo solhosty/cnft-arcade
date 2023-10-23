@@ -7,10 +7,16 @@
     let iframeUrl = "";
 
     onMount(async () => {
-        // Assuming you have a function `getNFTById` that fetches an NFT by its ID.
+    try {
         nft = await getAsset(data.props.id);
-        iframeUrl = nft.content.files[1].uri;
-    });
+        const r = await fetch(nft.content.json_uri)
+        const j = await r.json()
+        const html = j.animation_url
+        iframeUrl = html
+    } catch (e) {
+        
+    }
+});
 
 </script>
 
