@@ -58,13 +58,13 @@
 				<span class="loading loading-infinity loading-lg m-auto mt-2"></span>
 				{:else if loaded}
 				<a href="/play" class="w-full">
-				<button class="btn bg-gradient-to-r from-green-700 to-green-800 w-full text-white my-2">Play</button>
+				<button class="btn rounded-lg bg-gradient-to-r from-green-700 to-green-800 w-full text-white my-2">Play</button>
 				</a>
 				{:else if game.name === "TBD"}
-				<button disabled class="btn bg-gradient-to-r hover:from-red-900 hover:to-red-900 from-red-600 to-red-800 w-full text-white my-2" on:click={mintGame}>Mint</button>
+				<button disabled class="btn rounded-lg bg-gradient-to-r hover:from-red-900 hover:to-red-900 from-red-600 to-red-800 w-full text-white my-2" on:click={mintGame}>Mint</button>
 
 				{:else}
-				<button class="btn bg-gradient-to-r hover:from-red-900 hover:to-red-900 from-red-600 to-red-800 w-full text-white my-2" on:click={mintGame}>Mint</button>
+				<button class="btn bg-gradient-to-r rounded-lg hover:from-red-900 hover:to-red-900 from-red-600 to-red-800 w-full text-white my-2" on:click={mintGame}>Mint</button>
 				{/if}
 			</div>
 		</div>

@@ -101,7 +101,7 @@
         cells[i].addEventListener("click", function () {
           if (this.textContent === "" && currentPlayer === "X") {
             this.textContent = currentPlayer;
-            if (checkForWinner()) {
+            if (checkForWinner(currentPlayer)) {
               alert(currentPlayer + " wins!");
               resetBoard();
               return;
@@ -142,7 +142,7 @@
 
       if (bestMove) {
         bestMove.textContent = "O";
-        if (checkForWinner()) {
+        if (checkForWinner(currentPlayer)) {
           alert("O wins!");
           resetBoard();
           return;
@@ -192,7 +192,7 @@
           let cell = document.getElementById(i + "" + j);
           if (cell.textContent === "") {
             cell.textContent = player;
-            if (checkForWinner()) {
+            if (checkForWinner(currentPlayer)) {
               if (player === "X") {
                 cell.textContent = "O"; // AI blocks the player
               }

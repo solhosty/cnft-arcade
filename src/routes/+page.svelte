@@ -6,11 +6,11 @@
 </script>
 <svelte:head> <title>cNFT Arcade</title> </svelte:head>
 
-	<div class="w-full h-100 bg-black overflow-hidden">
+	<div class="w-full h-100  overflow-hidden">
 		<img src="/minion.png" class="w-48 pt-10 m-auto" alt=""/>
 		{#if !$walletStore$?.connected}
 		<div>
-			<h1 class="text-center text-white my-4 pt-8"> Connect wallet to start playing. </h1>
+			<h1 class="text-center  my-4 pt-8"> Connect wallet to start playing. </h1>
 			<Wallet/>
 		</div>
 		{:else if $walletStore$?.connected}

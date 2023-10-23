@@ -15,8 +15,8 @@
 </script>
 
 {#if iframeUrl}
-<h1 class="text-white text-center text-2xl pt-4 md:pt-20 lg:pt-10"> {nft.content.metadata.name}</h1>
-    <div class="flex justify-center my-2 h-screen bg-black">
+<h1 class=" text-center text-2xl pt-4 md:pt-20 lg:pt-10"> {nft.content.metadata.name}</h1>
+    <div class="flex justify-center my-2 h-screen ">
         {#if nft.content.metadata.name === "Whack A Minion"}
         <iframe 
             class="rounded-xl" 
